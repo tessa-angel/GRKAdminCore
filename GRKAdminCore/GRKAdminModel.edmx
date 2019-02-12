@@ -1,0 +1,783 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="LD30Attribute">
+          <Key>
+            <PropertyRef Name="AttributeID" />
+          </Key>
+          <Property Name="AttributeID" Type="int" Nullable="false" />
+          <Property Name="TableID" Type="int" Nullable="false" />
+          <Property Name="AttributeName" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="AttributeType" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="DisplayLabel" Type="nvarchar" MaxLength="128" />
+          <Property Name="Deleted" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="GUIField" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Formula" Type="nvarchar" MaxLength="1024" />
+          <Property Name="AttributeRole" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Expression" Type="nvarchar" MaxLength="1024" />
+          <Property Name="Length" Type="int" />
+          <Property Name="IsOrder" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LD30LinkedAttribute">
+          <Key>
+            <PropertyRef Name="AttributeID" />
+          </Key>
+          <Property Name="AttributeID" Type="int" Nullable="false" />
+          <Property Name="TableLinkID" Type="int" />
+          <Property Name="ColumnLinkID" Type="int" />
+          <Property Name="ToColumnID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LD3Method">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="InternalName" Type="nvarchar" MaxLength="128" />
+          <Property Name="ObjectTypeID" Type="int" Nullable="false" />
+          <Property Name="Deleted" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="MethodType" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="ReturnType" Type="int" />
+          <Property Name="ReturnList" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="ListColumn" Type="nvarchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="LD3Overlay">
+          <Key>
+            <PropertyRef Name="ObjectTypeID" />
+            <PropertyRef Name="AttributeName" />
+          </Key>
+          <Property Name="ObjectTypeID" Type="int" Nullable="false" />
+          <Property Name="AttributeName" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="DisplayLabel" Type="nvarchar" MaxLength="128" />
+          <Property Name="VisibleIndex" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LDCOLUMN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="TableID" Type="int" Nullable="false" />
+          <Property Name="DataTypeID" Type="int" Nullable="false" />
+          <Property Name="ViewColumnID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="32" />
+          <Property Name="Length" Type="int" />
+          <Property Name="PKey" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Alignment" Type="int" Nullable="false" />
+          <Property Name="DisplayLabel" Type="nvarchar" MaxLength="128" />
+          <Property Name="GUIField" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="InfoField" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="NotNull" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="ResField" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="SortFields" Type="nvarchar" MaxLength="64" />
+          <Property Name="ControlTypeID" Type="int" />
+          <Property Name="RefObjectTypeID" Type="int" />
+          <Property Name="Deleted" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="FullDisplayLabel" Type="nvarchar" MaxLength="512" />
+          <Property Name="UseLastVersion" Type="char" MaxLength="1" />
+          <Property Name="Grouping" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="DualListVisible" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="LinkResField" Type="nvarchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="LDCOLUMNLINK">
+          <Key>
+            <PropertyRef Name="TableLinkID" />
+            <PropertyRef Name="FromColumnID" />
+            <PropertyRef Name="ToColumnID" />
+          </Key>
+          <Property Name="TableLinkID" Type="int" Nullable="false" />
+          <Property Name="FromColumnID" Type="int" Nullable="false" />
+          <Property Name="ToColumnID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LDOBJECTTYPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" />
+          <Property Name="DisplayLabel" Type="nvarchar" MaxLength="128" />
+          <Property Name="AccessMode" Type="int" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="System" Type="char" MaxLength="1" />
+          <Property Name="FormID" Type="int" />
+          <Property Name="ViewTableID" Type="int" />
+          <Property Name="ResName" Type="nvarchar" MaxLength="32" />
+          <Property Name="VersionESign" Type="int" />
+          <Property Name="TableID" Type="int" />
+          <Property Name="ObjTpCategoryID" Type="int" />
+          <Property Name="AddFormID" Type="int" />
+          <Property Name="UID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="VersionAllow" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LDTABLE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" />
+          <Property Name="CardTable" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="GUIView" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Type" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="DisplayLabel" Type="nvarchar" MaxLength="128" />
+          <Property Name="Deleted" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LDTABLELINK">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="FromTableID" Type="int" Nullable="false" />
+          <Property Name="ToTableID" Type="int" Nullable="false" />
+          <Property Name="Type" Type="int" />
+          <Property Name="GUILink" Type="char" MaxLength="1" />
+        </EntityType>
+        <Association Name="FK_LD30Attribute_LDTABLE">
+          <End Role="LDTABLE" Type="Self.LDTABLE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LD30Attribute" Type="Self.LD30Attribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LDTABLE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LD30Attribute">
+              <PropertyRef Name="TableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LD30LinkedAttribute_LD30Attribute">
+          <End Role="LD30Attribute" Type="Self.LD30Attribute" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LD30LinkedAttribute" Type="Self.LD30LinkedAttribute" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="LD30Attribute">
+              <PropertyRef Name="AttributeID" />
+            </Principal>
+            <Dependent Role="LD30LinkedAttribute">
+              <PropertyRef Name="AttributeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LD30LinkedAttribute_LDTABLELINK">
+          <End Role="LDTABLELINK" Type="Self.LDTABLELINK" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LD30LinkedAttribute" Type="Self.LD30LinkedAttribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LDTABLELINK">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LD30LinkedAttribute">
+              <PropertyRef Name="TableLinkID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LD3Method_LDObjectType">
+          <End Role="LDOBJECTTYPE" Type="Self.LDOBJECTTYPE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LD3Method" Type="Self.LD3Method" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LDOBJECTTYPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LD3Method">
+              <PropertyRef Name="ObjectTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LD3Overlay_LDObjectType">
+          <End Role="LDOBJECTTYPE" Type="Self.LDOBJECTTYPE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LD3Overlay" Type="Self.LD3Overlay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LDOBJECTTYPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LD3Overlay">
+              <PropertyRef Name="ObjectTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LDCOLUMN_REFOBJECTTYPEID">
+          <End Role="LDOBJECTTYPE" Type="Self.LDOBJECTTYPE" Multiplicity="0..1" />
+          <End Role="LDCOLUMN" Type="Self.LDCOLUMN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LDOBJECTTYPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LDCOLUMN">
+              <PropertyRef Name="RefObjectTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LDOBJECTTYPE_PARENTID">
+          <End Role="LDOBJECTTYPE" Type="Self.LDOBJECTTYPE" Multiplicity="0..1" />
+          <End Role="LDOBJECTTYPE1" Type="Self.LDOBJECTTYPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LDOBJECTTYPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LDOBJECTTYPE1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LDOBJECTTYPE_TABLEID">
+          <End Role="LDTABLE" Type="Self.LDTABLE" Multiplicity="0..1" />
+          <End Role="LDOBJECTTYPE" Type="Self.LDOBJECTTYPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LDTABLE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LDOBJECTTYPE">
+              <PropertyRef Name="TableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LDOBJECTTYPE_VIEWTABLEID">
+          <End Role="LDTABLE" Type="Self.LDTABLE" Multiplicity="0..1" />
+          <End Role="LDOBJECTTYPE" Type="Self.LDOBJECTTYPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LDTABLE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LDOBJECTTYPE">
+              <PropertyRef Name="ViewTableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LDModelStoreContainer">
+          <EntitySet Name="LD30Attribute" EntityType="Self.LD30Attribute" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LD30LinkedAttribute" EntityType="Self.LD30LinkedAttribute" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LD3Method" EntityType="Self.LD3Method" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LD3Overlay" EntityType="Self.LD3Overlay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LDCOLUMN" EntityType="Self.LDCOLUMN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LDCOLUMNLINK" EntityType="Self.LDCOLUMNLINK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LDOBJECTTYPE" EntityType="Self.LDOBJECTTYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LDTABLE" EntityType="Self.LDTABLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LDTABLELINK" EntityType="Self.LDTABLELINK" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_LD30Attribute_LDTABLE" Association="Self.FK_LD30Attribute_LDTABLE">
+            <End Role="LDTABLE" EntitySet="LDTABLE" />
+            <End Role="LD30Attribute" EntitySet="LD30Attribute" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LD30LinkedAttribute_LD30Attribute" Association="Self.FK_LD30LinkedAttribute_LD30Attribute">
+            <End Role="LD30Attribute" EntitySet="LD30Attribute" />
+            <End Role="LD30LinkedAttribute" EntitySet="LD30LinkedAttribute" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LD30LinkedAttribute_LDTABLELINK" Association="Self.FK_LD30LinkedAttribute_LDTABLELINK">
+            <End Role="LDTABLELINK" EntitySet="LDTABLELINK" />
+            <End Role="LD30LinkedAttribute" EntitySet="LD30LinkedAttribute" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LD3Method_LDObjectType" Association="Self.FK_LD3Method_LDObjectType">
+            <End Role="LDOBJECTTYPE" EntitySet="LDOBJECTTYPE" />
+            <End Role="LD3Method" EntitySet="LD3Method" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LD3Overlay_LDObjectType" Association="Self.FK_LD3Overlay_LDObjectType">
+            <End Role="LDOBJECTTYPE" EntitySet="LDOBJECTTYPE" />
+            <End Role="LD3Overlay" EntitySet="LD3Overlay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LDCOLUMN_REFOBJECTTYPEID" Association="Self.FK_LDCOLUMN_REFOBJECTTYPEID">
+            <End Role="LDOBJECTTYPE" EntitySet="LDOBJECTTYPE" />
+            <End Role="LDCOLUMN" EntitySet="LDCOLUMN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LDOBJECTTYPE_PARENTID" Association="Self.FK_LDOBJECTTYPE_PARENTID">
+            <End Role="LDOBJECTTYPE" EntitySet="LDOBJECTTYPE" />
+            <End Role="LDOBJECTTYPE1" EntitySet="LDOBJECTTYPE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LDOBJECTTYPE_TABLEID" Association="Self.FK_LDOBJECTTYPE_TABLEID">
+            <End Role="LDTABLE" EntitySet="LDTABLE" />
+            <End Role="LDOBJECTTYPE" EntitySet="LDOBJECTTYPE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LDOBJECTTYPE_VIEWTABLEID" Association="Self.FK_LDOBJECTTYPE_VIEWTABLEID">
+            <End Role="LDTABLE" EntitySet="LDTABLE" />
+            <End Role="LDOBJECTTYPE" EntitySet="LDOBJECTTYPE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="LD30Attribute">
+          <Key>
+            <PropertyRef Name="AttributeID" />
+          </Key>
+          <Property Name="AttributeID" Type="Int32" Nullable="false" />
+          <Property Name="TableID" Type="Int32" Nullable="false" />
+          <Property Name="AttributeName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AttributeType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="DisplayLabel" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="GUIField" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Formula" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="AttributeRole" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Expression" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="Length" Type="Int32" />
+          <Property Name="IsOrder" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="LDTABLE" Relationship="Self.FK_LD30Attribute_LDTABLE" FromRole="LD30Attribute" ToRole="LDTABLE" />
+          <NavigationProperty Name="LD30LinkedAttribute" Relationship="Self.FK_LD30LinkedAttribute_LD30Attribute" FromRole="LD30Attribute" ToRole="LD30LinkedAttribute" />
+        </EntityType>
+        <EntityType Name="LD30LinkedAttribute">
+          <Key>
+            <PropertyRef Name="AttributeID" />
+          </Key>
+          <Property Name="AttributeID" Type="Int32" Nullable="false" />
+          <Property Name="TableLinkID" Type="Int32" />
+          <Property Name="ColumnLinkID" Type="Int32" />
+          <Property Name="ToColumnID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LD30Attribute" Relationship="Self.FK_LD30LinkedAttribute_LD30Attribute" FromRole="LD30LinkedAttribute" ToRole="LD30Attribute" />
+          <NavigationProperty Name="LDTABLELINK" Relationship="Self.FK_LD30LinkedAttribute_LDTABLELINK" FromRole="LD30LinkedAttribute" ToRole="LDTABLELINK" />
+        </EntityType>
+        <EntityType Name="LD3Method">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="InternalName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ObjectTypeID" Type="Int32" Nullable="false" />
+          <Property Name="Deleted" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="MethodType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ReturnType" Type="Int32" />
+          <Property Name="ReturnList" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ListColumn" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LDOBJECTTYPE" Relationship="Self.FK_LD3Method_LDObjectType" FromRole="LD3Method" ToRole="LDOBJECTTYPE" />
+        </EntityType>
+        <EntityType Name="LD3Overlay">
+          <Key>
+            <PropertyRef Name="ObjectTypeID" />
+            <PropertyRef Name="AttributeName" />
+          </Key>
+          <Property Name="ObjectTypeID" Type="Int32" Nullable="false" />
+          <Property Name="AttributeName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DisplayLabel" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="VisibleIndex" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LDOBJECTTYPE" Relationship="Self.FK_LD3Overlay_LDObjectType" FromRole="LD3Overlay" ToRole="LDOBJECTTYPE" />
+        </EntityType>
+        <EntityType Name="LDCOLUMN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="TableID" Type="Int32" Nullable="false" />
+          <Property Name="DataTypeID" Type="Int32" Nullable="false" />
+          <Property Name="ViewColumnID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Length" Type="Int32" />
+          <Property Name="PKey" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Alignment" Type="Int32" Nullable="false" />
+          <Property Name="DisplayLabel" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="GUIField" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="InfoField" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NotNull" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ResField" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="SortFields" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="ControlTypeID" Type="Int32" />
+          <Property Name="RefObjectTypeID" Type="Int32" />
+          <Property Name="Deleted" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="FullDisplayLabel" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="UseLastVersion" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Grouping" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="DualListVisible" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="LinkResField" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LDOBJECTTYPE" Relationship="Self.FK_LDCOLUMN_REFOBJECTTYPEID" FromRole="LDCOLUMN" ToRole="LDOBJECTTYPE" />
+        </EntityType>
+        <EntityType Name="LDCOLUMNLINK">
+          <Key>
+            <PropertyRef Name="TableLinkID" />
+            <PropertyRef Name="FromColumnID" />
+            <PropertyRef Name="ToColumnID" />
+          </Key>
+          <Property Name="TableLinkID" Type="Int32" Nullable="false" />
+          <Property Name="FromColumnID" Type="Int32" Nullable="false" />
+          <Property Name="ToColumnID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LDOBJECTTYPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayLabel" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AccessMode" Type="Int32" />
+          <Property Name="ParentID" Type="Int32" />
+          <Property Name="System" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FormID" Type="Int32" />
+          <Property Name="ViewTableID" Type="Int32" />
+          <Property Name="ResName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="VersionESign" Type="Int32" />
+          <Property Name="TableID" Type="Int32" />
+          <Property Name="ObjTpCategoryID" Type="Int32" />
+          <Property Name="AddFormID" Type="Int32" />
+          <Property Name="UID" Type="Guid" Nullable="false" />
+          <Property Name="VersionAllow" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="LD3Method" Relationship="Self.FK_LD3Method_LDObjectType" FromRole="LDOBJECTTYPE" ToRole="LD3Method" />
+          <NavigationProperty Name="LD3Overlay" Relationship="Self.FK_LD3Overlay_LDObjectType" FromRole="LDOBJECTTYPE" ToRole="LD3Overlay" />
+          <NavigationProperty Name="LDCOLUMN" Relationship="Self.FK_LDCOLUMN_REFOBJECTTYPEID" FromRole="LDOBJECTTYPE" ToRole="LDCOLUMN" />
+          <NavigationProperty Name="LDOBJECTTYPE1" Relationship="Self.FK_LDOBJECTTYPE_PARENTID" FromRole="LDOBJECTTYPE" ToRole="LDOBJECTTYPE1" />
+          <NavigationProperty Name="LDOBJECTTYPE2" Relationship="Self.FK_LDOBJECTTYPE_PARENTID" FromRole="LDOBJECTTYPE1" ToRole="LDOBJECTTYPE" />
+          <NavigationProperty Name="LDTABLE" Relationship="Self.FK_LDOBJECTTYPE_TABLEID" FromRole="LDOBJECTTYPE" ToRole="LDTABLE" />
+          <NavigationProperty Name="LDTABLE1" Relationship="Self.FK_LDOBJECTTYPE_VIEWTABLEID" FromRole="LDOBJECTTYPE" ToRole="LDTABLE" />
+        </EntityType>
+        <EntityType Name="LDTABLE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CardTable" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="GUIView" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="DisplayLabel" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="LD30Attribute" Relationship="Self.FK_LD30Attribute_LDTABLE" FromRole="LDTABLE" ToRole="LD30Attribute" />
+          <NavigationProperty Name="LDOBJECTTYPE" Relationship="Self.FK_LDOBJECTTYPE_TABLEID" FromRole="LDTABLE" ToRole="LDOBJECTTYPE" />
+          <NavigationProperty Name="LDOBJECTTYPE1" Relationship="Self.FK_LDOBJECTTYPE_VIEWTABLEID" FromRole="LDTABLE" ToRole="LDOBJECTTYPE" />
+        </EntityType>
+        <EntityType Name="LDTABLELINK">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="FromTableID" Type="Int32" Nullable="false" />
+          <Property Name="ToTableID" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="GUILink" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="LD30LinkedAttribute" Relationship="Self.FK_LD30LinkedAttribute_LDTABLELINK" FromRole="LDTABLELINK" ToRole="LD30LinkedAttribute" />
+        </EntityType>
+        <Association Name="FK_LD30Attribute_LDTABLE">
+          <End Role="LDTABLE" Type="Self.LDTABLE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LD30Attribute" Type="Self.LD30Attribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LDTABLE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LD30Attribute">
+              <PropertyRef Name="TableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LD30LinkedAttribute_LD30Attribute">
+          <End Role="LD30Attribute" Type="Self.LD30Attribute" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LD30LinkedAttribute" Type="Self.LD30LinkedAttribute" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="LD30Attribute">
+              <PropertyRef Name="AttributeID" />
+            </Principal>
+            <Dependent Role="LD30LinkedAttribute">
+              <PropertyRef Name="AttributeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LD30LinkedAttribute_LDTABLELINK">
+          <End Role="LDTABLELINK" Type="Self.LDTABLELINK" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LD30LinkedAttribute" Type="Self.LD30LinkedAttribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LDTABLELINK">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LD30LinkedAttribute">
+              <PropertyRef Name="TableLinkID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LD3Method_LDObjectType">
+          <End Role="LDOBJECTTYPE" Type="Self.LDOBJECTTYPE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LD3Method" Type="Self.LD3Method" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LDOBJECTTYPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LD3Method">
+              <PropertyRef Name="ObjectTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LD3Overlay_LDObjectType">
+          <End Role="LDOBJECTTYPE" Type="Self.LDOBJECTTYPE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LD3Overlay" Type="Self.LD3Overlay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LDOBJECTTYPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LD3Overlay">
+              <PropertyRef Name="ObjectTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LDCOLUMN_REFOBJECTTYPEID">
+          <End Role="LDOBJECTTYPE" Type="Self.LDOBJECTTYPE" Multiplicity="0..1" />
+          <End Role="LDCOLUMN" Type="Self.LDCOLUMN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LDOBJECTTYPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LDCOLUMN">
+              <PropertyRef Name="RefObjectTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LDOBJECTTYPE_PARENTID">
+          <End Role="LDOBJECTTYPE" Type="Self.LDOBJECTTYPE" Multiplicity="0..1" />
+          <End Role="LDOBJECTTYPE1" Type="Self.LDOBJECTTYPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LDOBJECTTYPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LDOBJECTTYPE1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LDOBJECTTYPE_TABLEID">
+          <End Role="LDTABLE" Type="Self.LDTABLE" Multiplicity="0..1" />
+          <End Role="LDOBJECTTYPE" Type="Self.LDOBJECTTYPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LDTABLE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LDOBJECTTYPE">
+              <PropertyRef Name="TableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LDOBJECTTYPE_VIEWTABLEID">
+          <End Role="LDTABLE" Type="Self.LDTABLE" Multiplicity="0..1" />
+          <End Role="LDOBJECTTYPE" Type="Self.LDOBJECTTYPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LDTABLE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LDOBJECTTYPE">
+              <PropertyRef Name="ViewTableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LD30Attribute" EntityType="Self.LD30Attribute" />
+          <EntitySet Name="LD30LinkedAttribute" EntityType="Self.LD30LinkedAttribute" />
+          <EntitySet Name="LD3Method" EntityType="Self.LD3Method" />
+          <EntitySet Name="LD3Overlay" EntityType="Self.LD3Overlay" />
+          <EntitySet Name="LDCOLUMN" EntityType="Self.LDCOLUMN" />
+          <EntitySet Name="LDCOLUMNLINK" EntityType="Self.LDCOLUMNLINK" />
+          <EntitySet Name="LDOBJECTTYPE" EntityType="Self.LDOBJECTTYPE" />
+          <EntitySet Name="LDTABLE" EntityType="Self.LDTABLE" />
+          <EntitySet Name="LDTABLELINK" EntityType="Self.LDTABLELINK" />
+          <AssociationSet Name="FK_LD30Attribute_LDTABLE" Association="Self.FK_LD30Attribute_LDTABLE">
+            <End Role="LDTABLE" EntitySet="LDTABLE" />
+            <End Role="LD30Attribute" EntitySet="LD30Attribute" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LD30LinkedAttribute_LD30Attribute" Association="Self.FK_LD30LinkedAttribute_LD30Attribute">
+            <End Role="LD30Attribute" EntitySet="LD30Attribute" />
+            <End Role="LD30LinkedAttribute" EntitySet="LD30LinkedAttribute" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LD30LinkedAttribute_LDTABLELINK" Association="Self.FK_LD30LinkedAttribute_LDTABLELINK">
+            <End Role="LDTABLELINK" EntitySet="LDTABLELINK" />
+            <End Role="LD30LinkedAttribute" EntitySet="LD30LinkedAttribute" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LD3Method_LDObjectType" Association="Self.FK_LD3Method_LDObjectType">
+            <End Role="LDOBJECTTYPE" EntitySet="LDOBJECTTYPE" />
+            <End Role="LD3Method" EntitySet="LD3Method" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LD3Overlay_LDObjectType" Association="Self.FK_LD3Overlay_LDObjectType">
+            <End Role="LDOBJECTTYPE" EntitySet="LDOBJECTTYPE" />
+            <End Role="LD3Overlay" EntitySet="LD3Overlay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LDCOLUMN_REFOBJECTTYPEID" Association="Self.FK_LDCOLUMN_REFOBJECTTYPEID">
+            <End Role="LDOBJECTTYPE" EntitySet="LDOBJECTTYPE" />
+            <End Role="LDCOLUMN" EntitySet="LDCOLUMN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LDOBJECTTYPE_PARENTID" Association="Self.FK_LDOBJECTTYPE_PARENTID">
+            <End Role="LDOBJECTTYPE" EntitySet="LDOBJECTTYPE" />
+            <End Role="LDOBJECTTYPE1" EntitySet="LDOBJECTTYPE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LDOBJECTTYPE_TABLEID" Association="Self.FK_LDOBJECTTYPE_TABLEID">
+            <End Role="LDTABLE" EntitySet="LDTABLE" />
+            <End Role="LDOBJECTTYPE" EntitySet="LDOBJECTTYPE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LDOBJECTTYPE_VIEWTABLEID" Association="Self.FK_LDOBJECTTYPE_VIEWTABLEID">
+            <End Role="LDTABLE" EntitySet="LDTABLE" />
+            <End Role="LDOBJECTTYPE" EntitySet="LDOBJECTTYPE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LDModelStoreContainer" CdmEntityContainer="LDEntities">
+          <EntitySetMapping Name="LD30Attribute">
+            <EntityTypeMapping TypeName="LDModel.LD30Attribute">
+              <MappingFragment StoreEntitySet="LD30Attribute">
+                <ScalarProperty Name="AttributeID" ColumnName="AttributeID" />
+                <ScalarProperty Name="TableID" ColumnName="TableID" />
+                <ScalarProperty Name="AttributeName" ColumnName="AttributeName" />
+                <ScalarProperty Name="AttributeType" ColumnName="AttributeType" />
+                <ScalarProperty Name="DisplayLabel" ColumnName="DisplayLabel" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="GUIField" ColumnName="GUIField" />
+                <ScalarProperty Name="Formula" ColumnName="Formula" />
+                <ScalarProperty Name="AttributeRole" ColumnName="AttributeRole" />
+                <ScalarProperty Name="Expression" ColumnName="Expression" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="IsOrder" ColumnName="IsOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LD30LinkedAttribute">
+            <EntityTypeMapping TypeName="LDModel.LD30LinkedAttribute">
+              <MappingFragment StoreEntitySet="LD30LinkedAttribute">
+                <ScalarProperty Name="AttributeID" ColumnName="AttributeID" />
+                <ScalarProperty Name="TableLinkID" ColumnName="TableLinkID" />
+                <ScalarProperty Name="ColumnLinkID" ColumnName="ColumnLinkID" />
+                <ScalarProperty Name="ToColumnID" ColumnName="ToColumnID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LD3Method">
+            <EntityTypeMapping TypeName="LDModel.LD3Method">
+              <MappingFragment StoreEntitySet="LD3Method">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="InternalName" ColumnName="InternalName" />
+                <ScalarProperty Name="ObjectTypeID" ColumnName="ObjectTypeID" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="MethodType" ColumnName="MethodType" />
+                <ScalarProperty Name="ReturnType" ColumnName="ReturnType" />
+                <ScalarProperty Name="ReturnList" ColumnName="ReturnList" />
+                <ScalarProperty Name="ListColumn" ColumnName="ListColumn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LD3Overlay">
+            <EntityTypeMapping TypeName="LDModel.LD3Overlay">
+              <MappingFragment StoreEntitySet="LD3Overlay">
+                <ScalarProperty Name="ObjectTypeID" ColumnName="ObjectTypeID" />
+                <ScalarProperty Name="AttributeName" ColumnName="AttributeName" />
+                <ScalarProperty Name="DisplayLabel" ColumnName="DisplayLabel" />
+                <ScalarProperty Name="VisibleIndex" ColumnName="VisibleIndex" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LDCOLUMN">
+            <EntityTypeMapping TypeName="LDModel.LDCOLUMN">
+              <MappingFragment StoreEntitySet="LDCOLUMN">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TableID" ColumnName="TableID" />
+                <ScalarProperty Name="DataTypeID" ColumnName="DataTypeID" />
+                <ScalarProperty Name="ViewColumnID" ColumnName="ViewColumnID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="PKey" ColumnName="PKey" />
+                <ScalarProperty Name="Alignment" ColumnName="Alignment" />
+                <ScalarProperty Name="DisplayLabel" ColumnName="DisplayLabel" />
+                <ScalarProperty Name="GUIField" ColumnName="GUIField" />
+                <ScalarProperty Name="InfoField" ColumnName="InfoField" />
+                <ScalarProperty Name="NotNull" ColumnName="NotNull" />
+                <ScalarProperty Name="ResField" ColumnName="ResField" />
+                <ScalarProperty Name="SortFields" ColumnName="SortFields" />
+                <ScalarProperty Name="ControlTypeID" ColumnName="ControlTypeID" />
+                <ScalarProperty Name="RefObjectTypeID" ColumnName="RefObjectTypeID" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="FullDisplayLabel" ColumnName="FullDisplayLabel" />
+                <ScalarProperty Name="UseLastVersion" ColumnName="UseLastVersion" />
+                <ScalarProperty Name="Grouping" ColumnName="Grouping" />
+                <ScalarProperty Name="DualListVisible" ColumnName="DualListVisible" />
+                <ScalarProperty Name="LinkResField" ColumnName="LinkResField" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LDCOLUMNLINK">
+            <EntityTypeMapping TypeName="LDModel.LDCOLUMNLINK">
+              <MappingFragment StoreEntitySet="LDCOLUMNLINK">
+                <ScalarProperty Name="TableLinkID" ColumnName="TableLinkID" />
+                <ScalarProperty Name="FromColumnID" ColumnName="FromColumnID" />
+                <ScalarProperty Name="ToColumnID" ColumnName="ToColumnID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LDOBJECTTYPE">
+            <EntityTypeMapping TypeName="LDModel.LDOBJECTTYPE">
+              <MappingFragment StoreEntitySet="LDOBJECTTYPE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DisplayLabel" ColumnName="DisplayLabel" />
+                <ScalarProperty Name="AccessMode" ColumnName="AccessMode" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="System" ColumnName="System" />
+                <ScalarProperty Name="FormID" ColumnName="FormID" />
+                <ScalarProperty Name="ViewTableID" ColumnName="ViewTableID" />
+                <ScalarProperty Name="ResName" ColumnName="ResName" />
+                <ScalarProperty Name="VersionESign" ColumnName="VersionESign" />
+                <ScalarProperty Name="TableID" ColumnName="TableID" />
+                <ScalarProperty Name="ObjTpCategoryID" ColumnName="ObjTpCategoryID" />
+                <ScalarProperty Name="AddFormID" ColumnName="AddFormID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="VersionAllow" ColumnName="VersionAllow" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LDTABLE">
+            <EntityTypeMapping TypeName="LDModel.LDTABLE">
+              <MappingFragment StoreEntitySet="LDTABLE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CardTable" ColumnName="CardTable" />
+                <ScalarProperty Name="GUIView" ColumnName="GUIView" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="DisplayLabel" ColumnName="DisplayLabel" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LDTABLELINK">
+            <EntityTypeMapping TypeName="LDModel.LDTABLELINK">
+              <MappingFragment StoreEntitySet="LDTABLELINK">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FromTableID" ColumnName="FromTableID" />
+                <ScalarProperty Name="ToTableID" ColumnName="ToTableID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="GUILink" ColumnName="GUILink" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
